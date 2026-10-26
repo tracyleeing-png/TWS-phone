@@ -1,39 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/animations.css">
-    <title>Homepage</title>
+    <script src="js/profile-store.js"></script>
+    <script>
+        if (!window.TWSProfile.load()) {
+            window.location.replace('player/player.html');
+        } else if (!window.TWSProfile.isUnlocked()) {
+            window.location.replace('lockscreen/lockscreen.html');
+        }
+    </script>
+    <title>TWS Phone 桌面</title>
 </head>
 <body class="home-page">
-    <a href="lockscreen/lockscreen.html"><div class="powerBtn" onclick="ukljuci()"></div></a>
+    <button class="powerBtn" type="button" aria-label="锁定手机" onclick="ukljuci()"></button>
     <div id="telefon">
         <div id="island"></div>
         <div id="ekran">
-            <div id="realTime" class="real-time">
-                
-            </div>
-            <div class="densa_strana">
+            <div id="realTime" class="real-time"></div>
+            <div class="densa_strana" aria-hidden="true">
                 <img src="img/signal.png" alt="">
                 <img src="img/wi-fi.png" alt="">
                 <img src="img/full-battery.png" alt="">
             </div>
-            <div id="donjeIkonice">
-                <a href="poruke/poruke.html"><img src="img/iphone-message-computer-icons-text-messaging-messenger-93c1965b946804798a4d72bab8ef4b2f.png" alt="" class="donjaIkonica"></a>
-                <a href="poziv/poziv.html"><img src="img/dial icon.png" alt="" class="donjaIkonica" id="poziv"></a>
-                <a href="kalkulator/kalkulator.html"><img src="img/calc.png" alt="" class="donjaIkonica"></a>
+
+            <a class="home-profile" href="player/player.html?edit=1" aria-label="修改玩家资料">
+                <img data-player-avatar src="" alt="玩家头像">
+                <span>
+                    <small>当前玩家</small>
+                    <strong data-player-name>玩家</strong>
+                </span>
+            </a>
+
+            <div class="home-apps" aria-label="应用">
+                <button id="openKakaoTalk" class="home-app" type="button" aria-label="打开 KakaoTalk">
+                    <img src="img/kakaotalk-icon.svg" alt="">
+                    <span>KakaoTalk</span>
+                </button>
             </div>
-    
+
+            <div id="donjeIkonice">
+                <a href="poruke/poruke.html" aria-label="信息"><img src="img/iphone-message-computer-icons-text-messaging-messenger-93c1965b946804798a4d72bab8ef4b2f.png" alt="" class="donjaIkonica"></a>
+                <a href="poziv/poziv.html" aria-label="电话"><img src="img/dial icon.png" alt="" class="donjaIkonica" id="poziv"></a>
+                <a href="kalkulator/kalkulator.html" aria-label="计算器"><img src="img/calc.png" alt="" class="donjaIkonica"></a>
+            </div>
+
+            <section id="kakaoTalkApp" class="phone-app" aria-hidden="true" hidden>
+                <iframe id="kakaoTalkFrame" title="KakaoTalk 仿真应用" data-src="kakaotalk/index.html"></iframe>
+                <button id="closeKakaoTalk" class="app-home-indicator" type="button" aria-label="返回手机桌面"></button>
+            </section>
         </div>
     </div>
-    
-    
+
     <script src="js/script.js"></script>
-    
 </body>
 </html>

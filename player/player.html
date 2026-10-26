@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#111111">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="player.css">
+    <title>创建玩家资料</title>
+</head>
+<body>
+    <main class="phone" aria-labelledby="setupTitle">
+        <div class="dynamic-island" aria-hidden="true"></div>
+        <div class="status-bar" aria-hidden="true">
+            <span id="setupTime">09:41</span>
+            <span class="status-icons">●◔▰</span>
+        </div>
+
+        <section class="setup-card">
+            <p class="eyebrow">TWS PHONE</p>
+            <h1 id="setupTitle">创建玩家资料</h1>
+            <p class="intro">你设置的名字和头像会同步到 KakaoTalk，以及之后加入的所有社交应用。</p>
+
+            <form id="profileForm" novalidate>
+                <label class="avatar-picker" for="avatarInput">
+                    <img id="avatarPreview" src="" alt="玩家头像预览">
+                    <span class="avatar-edit" aria-hidden="true">＋</span>
+                    <span class="sr-only">选择头像</span>
+                </label>
+                <input id="avatarInput" class="file-input" type="file" accept="image/jpeg,image/png,image/webp,image/gif" aria-describedby="avatarHelp">
+                <button id="chooseAvatar" class="secondary-button" type="button">选择头像</button>
+                <p id="avatarHelp" class="field-help">支持 JPG、PNG、WebP 或 GIF，保存时会自动裁切为正方形。</p>
+
+                <label class="name-label" for="playerName">你的名字</label>
+                <input id="playerName" class="name-input" type="text" maxlength="20" autocomplete="nickname" placeholder="请输入玩家名字" required>
+
+                <p id="formMessage" class="form-message" role="alert" aria-live="polite"></p>
+                <button id="continueButton" class="primary-button" type="submit">保存并进入锁屏</button>
+            </form>
+
+            <p class="privacy-note">资料只保存在当前浏览器中，不会上传到服务器。</p>
+        </section>
+    </main>
+
+    <script src="../js/profile-store.js"></script>
+    <script src="player.js"></script>
+</body>
+</html>

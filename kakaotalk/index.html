@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="stylesheet" href="kakaotalk.css">
+    <title>KakaoTalk</title>
+</head>
+<body>
+    <div id="kakaoApp" class="kakao-app">
+        <div class="status-bar">
+            <div class="status-bar__column">
+                <span>无服务</span>
+                <i class="fas fa-wifi" aria-hidden="true"></i>
+            </div>
+            <div class="status-bar__column">
+                <strong id="kakaoTime">09:41</strong>
+            </div>
+            <div class="status-bar__column">
+                <i class="fas fa-lock-open fa-xs" aria-hidden="true"></i>
+                <span>100%</span>
+                <i class="fas fa-battery-full fa-lg" aria-hidden="true"></i>
+            </div>
+        </div>
+
+        <section class="kakao-page" data-page="friends" aria-labelledby="friendsTitle">
+            <header class="screen-header">
+                <h1 id="friendsTitle" class="screen-header__title">好友</h1>
+                <div class="screen-header__icons" aria-hidden="true">
+                    <span><i class="fas fa-search fa-lg"></i></span>
+                    <span><i class="fas fa-music fa-lg"></i></span>
+                    <span><i class="fas fa-cog fa-lg"></i></span>
+                </div>
+            </header>
+
+            <div id="friends-display-link">
+                <i class="fas fa-info-circle" aria-hidden="true"></i>
+                好友姓名显示
+                <i class="fas fa-chevron-right fa-xs" aria-hidden="true"></i>
+            </div>
+
+            <main class="friends-screen">
+                <a class="user-component profile-link" href="../player/player.html?edit=1" target="_top">
+                    <div class="user-component__column">
+                        <img data-player-avatar src="" class="user-component__avatar user-component__avatar--xl" alt="玩家头像">
+                        <div class="user-component__text">
+                            <h2 class="user-component__title" data-player-name>玩家</h2>
+                            <p class="user-component__subtitle">我的个人资料</p>
+                        </div>
+                    </div>
+                    <div class="user-component__column"><i class="fas fa-chevron-right fa-xs"></i></div>
+                </a>
+
+                <div class="friends-screen__channel">
+                    <div class="friends-screen__channel-header">
+                        <span>好友 1</span>
+                        <i class="fas fa-chevron-up fa-xs" aria-hidden="true"></i>
+                    </div>
+                    <button class="user-component contact-button open-chat" type="button">
+                        <div class="user-component__column">
+                            <img src="../img/jin-dohun-avatar.jpg" class="user-component__avatar user-component__avatar--sm" alt="金道勋的头像">
+                            <div class="user-component__text">
+                                <h2 class="user-component__title user-component__title--not-bold">金道勋</h2>
+                                <p class="user-component__subtitle">今天也要开心。</p>
+                            </div>
+                        </div>
+                        <div class="user-component__column"><i class="fas fa-chevron-right fa-xs"></i></div>
+                    </button>
+                </div>
+            </main>
+        </section>
+
+        <section class="kakao-page is-active" data-page="chats" aria-labelledby="chatsTitle">
+            <header class="screen-header">
+                <h1 id="chatsTitle" class="screen-header__title">聊天</h1>
+                <div class="screen-header__icons" aria-hidden="true">
+                    <span><i class="fas fa-search fa-lg"></i></span>
+                    <span><i class="fas fa-comment-dots fa-lg"></i></span>
+                    <span><i class="fas fa-music fa-lg"></i></span>
+                    <span><i class="fas fa-cog fa-lg"></i></span>
+                </div>
+            </header>
+
+            <main class="main-screen">
+                <button class="user-component contact-button open-chat" type="button">
+                    <div class="user-component__column">
+                        <img src="../img/jin-dohun-avatar.jpg" class="user-component__avatar" alt="金道勋的头像">
+                        <div class="user-component__text">
+                            <h2 class="user-component__title">金道勋</h2>
+                            <p id="chatPreview" class="user-component__subtitle">今天也要开心。</p>
+                        </div>
+                    </div>
+                    <div class="user-component__column">
+                        <time id="chatPreviewTime" class="user-component__time">刚刚</time>
+                        <div class="badge">1</div>
+                    </div>
+                </button>
+            </main>
+        </section>
+
+        <section class="kakao-page" data-page="find" aria-labelledby="findTitle">
+            <header class="screen-header">
+                <h1 id="findTitle" class="screen-header__title">发现</h1>
+                <div class="screen-header__icons" aria-hidden="true">
+                    <span><i class="fas fa-search fa-lg"></i></span>
+                    <span><i class="fas fa-cog fa-lg"></i></span>
+                    <span class="screen-header__red-dot"></span>
+                </div>
+            </header>
+
+            <main class="main-screen find-screen">
+                <div class="icon-row">
+                    <div class="icon-row__icon"><i class="fas fa-qrcode"></i><span>二维码</span></div>
+                    <div class="icon-row__icon"><i class="far fa-address-book"></i><span>通讯录</span></div>
+                    <div class="icon-row__icon"><i class="fas fa-fingerprint"></i><span>ID 添加</span></div>
+                    <div class="icon-row__icon"><i class="far fa-envelope"></i><span>邀请</span></div>
+                </div>
+
+                <div class="recommended-friends">
+                    <h2 class="recommended-friends__title">推荐好友</h2>
+                    <span>暂时没有推荐好友。</span>
+                </div>
+
+                <div class="open-chat">
+                    <div class="open-chat__header">
+                        <h2>开放聊天</h2>
+                        <span>进入开放聊天主页 <i class="fas fa-chevron-right fa-xs"></i></span>
+                    </div>
+                    <button class="open-post open-chat" type="button">
+                        <div class="open-post__column">
+                            <h3 class="open-post__title">#金道勋</h3>
+                            <p class="open-post__hashtags">#日常 #聊天</p>
+                            <div class="open-post__members">
+                                <img src="../img/jin-dohun-avatar.jpg" alt="金道勋的头像">
+                                <span class="open-post__members-count">1 位成员</span>
+                                <div class="divider"></div>
+                                <span class="open-post__members-status">活跃</span>
+                            </div>
+                        </div>
+                        <div class="open-post__column">
+                            <div class="open-post__photo">
+                                <img src="../img/jin-dohun-avatar.jpg" alt="金道勋">
+                                <div class="open-post__heart-count"><i class="fas fa-heart fa-xs"></i><span>130</span></div>
+                            </div>
+                        </div>
+                    </button>
+                </div>
+            </main>
+        </section>
+
+        <section class="kakao-page" data-page="more" aria-labelledby="moreTitle">
+            <header class="screen-header">
+                <h1 id="moreTitle" class="screen-header__title">更多</h1>
+                <div class="screen-header__icons" aria-hidden="true">
+                    <span><i class="fas fa-search fa-lg"></i></span>
+                    <span><i class="fas fa-music fa-lg"></i></span>
+                    <span><i class="fas fa-cog fa-lg"></i></span>
+                    <span class="screen-header__red-dot"></span>
+                </div>
+            </header>
+
+            <main class="main-screen more-screen">
+                <a class="user-component profile-link" href="../player/player.html?edit=1" target="_top">
+                    <div class="user-component__column">
+                        <img data-player-avatar src="" class="user-component__avatar user-component__avatar--xl" alt="玩家头像">
+                        <div class="user-component__text">
+                            <h2 class="user-component__title" data-player-name>玩家</h2>
+                            <p class="user-component__subtitle">点击修改名字和头像</p>
+                        </div>
+                    </div>
+                    <div class="user-component__column"><i class="far fa-comment-alt fa-2x"></i></div>
+                </a>
+
+                <div class="icon-row">
+                    <div class="icon-row__icon"><i class="far fa-calendar"></i><span>日历</span></div>
+                    <div class="icon-row__icon"><i class="fas fa-cloud"></i><span>云盘</span></div>
+                    <div class="icon-row__icon"><i class="far fa-smile-wink"></i><span>表情</span></div>
+                    <div class="icon-row__icon"><i class="fas fa-brush"></i><span>主题</span></div>
+                </div>
+                <div class="icon-row icon-row--second">
+                    <div class="icon-row__icon"><i class="fas fa-user-circle"></i><span>账号</span></div>
+                    <div class="icon-row__icon"><i class="fas fa-comments"></i><span>开放聊天</span></div>
+                    <div class="icon-row__icon"></div>
+                    <div class="icon-row__icon"></div>
+                </div>
+
+                <div class="more-suggestions">
+                    <h2 class="more-suggestions__title">推荐</h2>
+                    <div class="more-suggestions__icons">
+                        <div class="more-suggestions__icon">
+                            <div class="more-suggestions__icon-image"><i class="fas fa-quote-right"></i></div>
+                            <span>Kakao 动态</span>
+                        </div>
+                        <div class="more-suggestions__icon">
+                            <div class="more-suggestions__icon-image"><i class="fas fa-paw"></i></div>
+                            <span>Kakao 好友</span>
+                        </div>
+                        <div class="more-suggestions__icon">
+                            <div class="more-suggestions__icon-image"><i class="fas fa-gamepad"></i></div>
+                            <span>好友游戏</span>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </section>
+
+        <section id="chatScreen" class="kakao-page chat-page" data-page="chat" aria-labelledby="chatTitle">
+            <header class="alt-header">
+                <div class="alt-header__column">
+                    <button id="backToChats" class="icon-button back-button" type="button" aria-label="返回聊天列表"><i class="fas fa-angle-left fa-2x"></i></button>
+                </div>
+                <div class="alt-header__column">
+                    <h1 id="chatTitle" class="alt-header__title">金道勋</h1>
+                </div>
+                <div class="alt-header__column" aria-hidden="true">
+                    <span><i class="fas fa-search fa-lg"></i></span>
+                    <span><i class="fas fa-bars fa-lg alt-header__column-icon-last"></i></span>
+                </div>
+            </header>
+
+            <main id="conversation" class="main-screen main-chat" aria-live="polite">
+                <div class="chat__timestamp">今天</div>
+                <div class="message-row">
+                    <img src="../img/jin-dohun-avatar.jpg" alt="金道勋的头像">
+                    <div class="message-row__content">
+                        <span class="message__author">金道勋</span>
+                        <div class="message__info">
+                            <p class="message__bubble">你到家了吗？</p>
+                            <time class="message__time">20:18</time>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="message-row message-row--own">
+                    <div class="message__info">
+                        <p class="message__bubble">刚到，你呢？</p>
+                        <time class="message__time">20:20</time>
+                    </div>
+                </div>
+
+                <div class="message-row">
+                    <img src="../img/jin-dohun-avatar.jpg" alt="金道勋的头像">
+                    <div class="message-row__content">
+                        <span class="message__author">金道勋</span>
+                        <div class="message__info">
+                            <p class="message__bubble">我也快到了，早点休息。</p>
+                            <time class="message__time">20:21</time>
+                        </div>
+                    </div>
+                </div>
+                <div id="sentMessages"></div>
+            </main>
+
+            <form id="messageForm" class="reply">
+                <div class="reply__column"><i class="far fa-plus-square fa-2x" aria-hidden="true"></i></div>
+                <div class="reply__column">
+                    <input id="messageInput" type="text" maxlength="300" autocomplete="off" placeholder="输入消息…" aria-label="消息内容">
+                    <i class="far fa-smile-wink fa-2x" aria-hidden="true"></i>
+                    <button type="submit" aria-label="发送"><i class="fas fa-arrow-up fa-lg"></i></button>
+                </div>
+            </form>
+        </section>
+
+        <nav id="bottomNav" class="nav" aria-label="KakaoTalk 导航">
+            <ul class="nav__list">
+                <li class="nav__btn"><button type="button" class="nav__link" data-tab="friends" aria-label="好友"><i class="far fa-user fa-lg"></i></button></li>
+                <li class="nav__btn"><button type="button" class="nav__link is-active" data-tab="chats" aria-label="聊天"><span class="nav__notification badge">1</span><i class="fas fa-comment fa-lg"></i></button></li>
+                <li class="nav__btn"><button type="button" class="nav__link" data-tab="find" aria-label="发现"><i class="fas fa-search fa-lg"></i></button></li>
+                <li class="nav__btn"><button type="button" class="nav__link" data-tab="more" aria-label="更多"><span class="nav__red_dot">.</span><i class="fas fa-ellipsis-h fa-lg"></i></button></li>
+            </ul>
+        </nav>
+    </div>
+
+    <script src="../js/profile-store.js"></script>
+    <script src="https://kit.fontawesome.com/6478f529f2.js" crossorigin="anonymous"></script>
+    <script src="kakaotalk.js"></script>
+</body>
+</html>

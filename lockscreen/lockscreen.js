@@ -6,6 +6,11 @@ const passcodeDots = document.getElementById('passcodeDots');
 const passcodeMessage = document.getElementById('passcodeMessage');
 const deleteKey = document.getElementById('deleteKey');
 
+if (!window.TWSProfile.load()) {
+    window.location.replace('../player/player.html');
+}
+window.TWSProfile.clearUnlocked();
+
 const PASSCODE = '0130';
 const UGASEN_EKRAN = 'radial-gradient(circle at 30% 20%, rgba(255,255,255,0.08), rgba(0,0,0,0) 40%), linear-gradient(135deg, #050505, #0b0b0b, #020202)';
 
@@ -58,6 +63,7 @@ const zavrsiOtkljucavanje = () => {
     }, 180);
 
     setTimeout(() => {
+        window.TWSProfile.markUnlocked();
         window.location.href = '../index.html';
     }, 620);
 };
@@ -228,3 +234,8 @@ ekran.addEventListener('pointerup', (event) => {
 ekran.addEventListener('pointercancel', () => {
     pocetniY = null;
 });
+
+if (new URLSearchParams(window.location.search).get('wake') === '1') {
+    window.history.replaceState({}, '', window.location.pathname);
+    ukljuci();
+}

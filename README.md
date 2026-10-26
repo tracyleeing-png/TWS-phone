@@ -9,8 +9,9 @@ The project simulates a phone with a lock screen, home screen and several workin
 This is a static website, so it does not need `npm install` or a build step.
 
 1. Start a static server from the repository folder, for example: `python -m http.server 8000`
-2. Open `http://localhost:8000/` for the home screen.
-3. Open `http://localhost:8000/lockscreen/lockscreen.html` to start from the lock screen.
+2. Open `http://localhost:8000/` to start the phone flow.
+3. On the first visit, choose a player name and avatar. The profile is stored only in the current browser.
+4. Continue to the lock screen and unlock the phone.
 
 On the lock screen, press `CTRL` or the black side button to wake the display. Then click the white bar, press `ArrowUp`, or swipe upward to open the iOS-style passcode screen. The demo passcode is `0130`.
 
@@ -19,13 +20,17 @@ On the lock screen, press `CTRL` or the black side button to wake the display. T
 - iPhone-style lock screen
 - Interactive four-digit passcode screen with keyboard support
 - Separate custom wallpapers for the lock screen and home screen
+- Player setup before the first lock screen, with a shared local name and avatar
+- Chinese KakaoTalk simulation with no login page and one chat: 金道勋
+- KakaoTalk reads the same player name and avatar as future social apps
 - Screen turns on by pressing a button or `CTRL`
 - Realistic homepage interface with time display
 - Swipe bar to access the home screen
-- Three working apps:
+- Four working apps:
   - Messages
   - Phone
   - Calculator
+  - KakaoTalk
 
 ## Apps
 
@@ -45,6 +50,13 @@ On the lock screen, press `CTRL` or the black side button to wake the display. T
 ### Calculator
 - iPhone-style calculator interface
 - Basic arithmetic operations
+
+### KakaoTalk
+- Opens directly from the home-screen KakaoTalk icon
+- Chinese friends, chat and profile screens
+- Only one conversation, with 金道勋
+- Uses the selected player name and avatar from `localStorage`
+- Supports sending and locally saving demo messages
 
 ## System Behavior
 
