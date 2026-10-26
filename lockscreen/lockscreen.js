@@ -1,105 +1,225 @@
 const ekran = document.getElementById('ekran');
 const izadjiLinija = document.getElementById('izadjiLinija');
 const telefon = document.getElementById('telefon');
+const passcodeScreen = document.getElementById('passcodeScreen');
+const passcodeDots = document.getElementById('passcodeDots');
+const passcodeMessage = document.getElementById('passcodeMessage');
+const deleteKey = document.getElementById('deleteKey');
 
-telefon.style.background = 'radial-gradient(circle at 30% 20%,rgba(255,255,255,0.08),rgba(0,0,0,0) 40%),linear-gradient(135deg,#050505,#0b0b0b,#020202)';
-ekran.style.display = 'none';
+const PASSCODE = '0130';
+const UGASEN_EKRAN = 'radial-gradient(circle at 30% 20%, rgba(255,255,255,0.08), rgba(0,0,0,0) 40%), linear-gradient(135deg, #050505, #0b0b0b, #020202)';
+
 let iskljucen = true;
+let passcodeOtvoren = false;
+let uneseneCifre = '';
 let otkljucavanje = false;
 let pocetniY = null;
+let proveraUToku = false;
 
+telefon.style.background = UGASEN_EKRAN;
+ekran.style.display = 'none';
 
+const osveziTacke = () => {
+    const tacke = passcodeDots.querySelectorAll('.passcode-dot');
 
-const otkljucaj = () => {
-    if (iskljucen || otkljucavanje) return;
+    tacke.forEach((tacka, index) => {
+        tacka.classList.toggle('filled', index < uneseneCifre.length);
+    });
+
+    passcodeDots.setAttribute('aria-label', `已输入 ${uneseneCifre.length} 位，共 4 位`);
+    deleteKey.textContent = uneseneCifre.length > 0 ? '删除' : '取消';
+};
+
+const resetujSifru = () => {
+    uneseneCifre = '';
+    proveraUToku = false;
+    passcodeMessage.textContent = '';
+    passcodeDots.classList.remove('shake');
+    osveziTacke();
+};
+
+const zatvoriSifru = () => {
+    passcodeOtvoren = false;
+    passcodeScreen.classList.remove('visible', 'unlocking');
+    passcodeScreen.setAttribute('aria-hidden', 'true');
+    ekran.classList.remove('passcode-active');
+    resetujSifru();
+};
+
+const zavrsiOtkljucavanje = () => {
+    if (otkljucavanje) return;
 
     otkljucavanje = true;
-    ekran.style.animation = 'lockscreenUp 0.5s forwards';
+    passcodeMessage.textContent = '正在解锁…';
+    passcodeScreen.classList.add('unlocking');
+
+    setTimeout(() => {
+        ekran.style.animation = 'lockscreenUp 0.5s forwards';
+    }, 180);
 
     setTimeout(() => {
         window.location.href = '../index.html';
-    }, 400);
+    }, 620);
 };
 
+const prikaziGresku = () => {
+    proveraUToku = true;
+    passcodeMessage.textContent = '密码错误，请重试';
+    passcodeDots.classList.remove('shake');
+    void passcodeDots.offsetWidth;
+    passcodeDots.classList.add('shake');
 
+    setTimeout(() => {
+        uneseneCifre = '';
+        proveraUToku = false;
+        passcodeDots.classList.remove('shake');
+        osveziTacke();
+    }, 520);
+};
 
-document.addEventListener('keydown', (event) => {
+const proveriSifru = () => {
+    if (uneseneCifre === PASSCODE) {
+        zavrsiOtkljucavanje();
+    } else {
+        prikaziGresku();
+    }
+};
 
-    if (event.key === 'Control') {
-        ukljuci();
+const unesiCifru = (cifra) => {
+    if (!passcodeOtvoren || proveraUToku || otkljucavanje || uneseneCifre.length >= PASSCODE.length) return;
+
+    uneseneCifre += cifra;
+    passcodeMessage.textContent = '';
+    osveziTacke();
+
+    if (uneseneCifre.length === PASSCODE.length) {
+        proveraUToku = true;
+        setTimeout(proveriSifru, 160);
+    }
+};
+
+const obrisiCifruIliOtkazi = () => {
+    if (proveraUToku || otkljucavanje) return;
+
+    if (uneseneCifre.length === 0) {
+        zatvoriSifru();
+        return;
     }
 
-    if (!iskljucen && event.key === 'ArrowUp') {
+    uneseneCifre = uneseneCifre.slice(0, -1);
+    passcodeMessage.textContent = '';
+    osveziTacke();
+};
+
+const otvoriSifru = () => {
+    if (iskljucen || passcodeOtvoren || otkljucavanje) return;
+
+    passcodeOtvoren = true;
+    resetujSifru();
+    ekran.classList.add('passcode-active');
+    passcodeScreen.classList.add('visible');
+    passcodeScreen.setAttribute('aria-hidden', 'false');
+};
+
+const ukljuci = () => {
+    if (iskljucen) {
+        ekran.style.animation = 'fadeBlur 1s ease forwards';
+        ekran.style.display = 'block';
+        iskljucen = false;
+        telefon.style.background = '';
+        return;
+    }
+
+    zatvoriSifru();
+    ekran.style.display = 'none';
+    iskljucen = true;
+    telefon.style.background = UGASEN_EKRAN;
+};
+
+window.ukljuci = ukljuci;
+
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'Control') {
+        ukljuci();
+        return;
+    }
+
+    if (iskljucen) return;
+
+    if (passcodeOtvoren) {
+        if (/^[0-9]$/.test(event.key)) {
+            unesiCifru(event.key);
+        } else if (event.key === 'Backspace') {
+            obrisiCifruIliOtkazi();
+        } else if (event.key === 'Escape') {
+            zatvoriSifru();
+        }
+        return;
+    }
+
+    if (event.key === 'ArrowUp') {
         event.preventDefault();
-        otkljucaj();
+        otvoriSifru();
     }
 });
 
+passcodeScreen.addEventListener('click', (event) => {
+    const taster = event.target.closest('button');
+    if (!taster) return;
 
-
-const ukljuci = () => {
-    if(iskljucen){
-        ekran.style.display = 'block';
-        iskljucen = false;
-        telefon.style.background = ''   
-
-    } else {
-        ekran.style.display = 'none';
-        iskljucen = true;
-        telefon.style.background = 'radial-gradient(circle at 30% 20%,rgba(255,255,255,0.08),rgba(0,0,0,0) 40%),linear-gradient(135deg,#050505,#0b0b0b,#020202)';
-
-
+    if (taster.dataset.digit !== undefined) {
+        unesiCifru(taster.dataset.digit);
+        return;
     }
-    
-}
+
+    if (taster.dataset.action === 'delete') {
+        obrisiCifruIliOtkazi();
+    } else if (taster.dataset.action === 'emergency') {
+        passcodeMessage.textContent = '演示界面未连接紧急呼叫';
+    }
+});
 
 function updateClock() {
     const vreme = document.getElementById('vreme');
     const datum = document.getElementById('datum');
-
     const now = new Date();
 
-    const hours = now.getHours().toString().padStart(2,'0');
-    const minutes = now.getMinutes().toString().padStart(2,'0');
+    vreme.textContent = now.toLocaleTimeString('zh-CN', {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false
+    });
 
-    const day = now.getDate().toString().padStart(2, '0');
-    const monthIndex = now.getMonth();
-
-    const meseci = ['Jan', 'Feb', 'Mar', 'Apr', 'Maj', 'Jun', 'Jul', 'Avg', 'Sep', 'Okt', 'Nov', 'Dec'];
-    const mesec = meseci[monthIndex];
-
-    const nedelja_index = now.getDay();
-    const dani = ['Ned', 'Pon', 'Uto', 'Sre', 'Čet', 'Pet', 'Sub'];
-    const dan_u_nedelji = dani[nedelja_index]
-
-    datum.textContent = `${dan_u_nedelji} ${day} ${mesec}`;
-    vreme.textContent = `${hours}:${minutes}`;
+    datum.textContent = new Intl.DateTimeFormat('zh-CN', {
+        month: 'long',
+        day: 'numeric',
+        weekday: 'long'
+    }).format(now);
 }
 
 updateClock();
 setInterval(updateClock, 1000);
 
-
-ekran.addEventListener('mouseenter', (event) => {
-    document.body.style.cursor = 'default'
+ekran.addEventListener('mouseenter', () => {
+    document.body.style.cursor = 'default';
 });
 
-ekran.addEventListener('mouseleave', (event) => {
+ekran.addEventListener('mouseleave', () => {
     document.body.style.cursor = 'none';
 });
 
-
-izadjiLinija.addEventListener('click', (event) => {
-    otkljucaj();
+izadjiLinija.addEventListener('click', () => {
+    otvoriSifru();
 });
 
 ekran.addEventListener('pointerdown', (event) => {
+    if (passcodeOtvoren) return;
     pocetniY = event.clientY;
 });
 
 ekran.addEventListener('pointerup', (event) => {
-    if (pocetniY !== null && pocetniY - event.clientY > 60) {
-        otkljucaj();
+    if (!passcodeOtvoren && pocetniY !== null && pocetniY - event.clientY > 60) {
+        otvoriSifru();
     }
 
     pocetniY = null;

@@ -45,3 +45,15 @@
     50% { opacity: 0.35; }
     100% { opacity: 0.2; }
 }
+
+@keyframes passcodeShake {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-12px); }
+    40% { transform: translateX(10px); }
+    60% { transform: translateX(-7px); }
+    80% { transform: translateX(5px); }
+}
+
+.passcode-dots.shake {
+    animation: passcodeShake 0.42s ease-in-out;
+}

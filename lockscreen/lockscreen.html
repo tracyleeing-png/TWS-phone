@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,10 +8,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/animations.css">
-    <title>LockScreen</title>
+    <title>iPhone 锁屏</title>
 </head>
-<body>
-    <div class="powerBtn" onclick="ukljuci()"></div>
+<body class="lockscreen-page">
+    <button class="powerBtn" type="button" aria-label="电源键" onclick="ukljuci()"></button>
     <div id="telefon">
         <div id="island"></div>
         <div id="ekran">
@@ -20,12 +20,45 @@
                 <img src="../img/wi-fi.png" alt="">
                 <img src="../img/full-battery.png" alt="">
             </div>
-            <div id="realTime" class="lockScreen">
-                <p id="datum"></p>
-                <h1 id="vreme"></h1>
+            <div id="lockContent" class="lock-content">
+                <div class="lock-indicator" aria-hidden="true"><span></span></div>
+                <div id="realTime" class="lockScreen">
+                    <p id="datum"></p>
+                    <h1 id="vreme"></h1>
+                </div>
             </div>
 
-            <div id="izadjiLinija"></div>
+            <section id="passcodeScreen" class="passcode-screen" aria-hidden="true" aria-label="密码解锁">
+                <div class="passcode-panel">
+                    <div class="passcode-heading">
+                        <p class="passcode-title">输入密码</p>
+                        <div id="passcodeDots" class="passcode-dots" aria-label="已输入 0 位，共 4 位">
+                            <span class="passcode-dot"></span>
+                            <span class="passcode-dot"></span>
+                            <span class="passcode-dot"></span>
+                            <span class="passcode-dot"></span>
+                        </div>
+                        <p id="passcodeMessage" class="passcode-message" aria-live="polite"></p>
+                    </div>
+
+                    <div class="passcode-keypad" aria-label="数字键盘">
+                        <button class="passcode-key" type="button" data-digit="1"><strong>1</strong><small>&nbsp;</small></button>
+                        <button class="passcode-key" type="button" data-digit="2"><strong>2</strong><small>ABC</small></button>
+                        <button class="passcode-key" type="button" data-digit="3"><strong>3</strong><small>DEF</small></button>
+                        <button class="passcode-key" type="button" data-digit="4"><strong>4</strong><small>GHI</small></button>
+                        <button class="passcode-key" type="button" data-digit="5"><strong>5</strong><small>JKL</small></button>
+                        <button class="passcode-key" type="button" data-digit="6"><strong>6</strong><small>MNO</small></button>
+                        <button class="passcode-key" type="button" data-digit="7"><strong>7</strong><small>PQRS</small></button>
+                        <button class="passcode-key" type="button" data-digit="8"><strong>8</strong><small>TUV</small></button>
+                        <button class="passcode-key" type="button" data-digit="9"><strong>9</strong><small>WXYZ</small></button>
+                        <button class="passcode-action" type="button" data-action="emergency">紧急情况</button>
+                        <button class="passcode-key" type="button" data-digit="0"><strong>0</strong><small>&nbsp;</small></button>
+                        <button id="deleteKey" class="passcode-action" type="button" data-action="delete">取消</button>
+                    </div>
+                </div>
+            </section>
+
+            <button id="izadjiLinija" type="button" aria-label="向上滑动以解锁"></button>
         </div>
     </div>
     

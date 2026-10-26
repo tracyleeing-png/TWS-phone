@@ -12,11 +12,13 @@ This is a static website, so it does not need `npm install` or a build step.
 2. Open `http://localhost:8000/` for the home screen.
 3. Open `http://localhost:8000/lockscreen/lockscreen.html` to start from the lock screen.
 
-On the lock screen, press `CTRL` or the black side button to wake the display. Then click the white bar, press `ArrowUp`, or swipe upward to open the home screen.
+On the lock screen, press `CTRL` or the black side button to wake the display. Then click the white bar, press `ArrowUp`, or swipe upward to open the iOS-style passcode screen. The demo passcode is `0130`.
 
 ## Features
 
 - iPhone-style lock screen
+- Interactive four-digit passcode screen with keyboard support
+- Separate custom wallpapers for the lock screen and home screen
 - Screen turns on by pressing a button or `CTRL`
 - Realistic homepage interface with time display
 - Swipe bar to access the home screen
