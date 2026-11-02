@@ -2,278 +2,80 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="theme-color" content="#ffffff">
     <link rel="stylesheet" href="kakaotalk.css">
     <title>KakaoTalk</title>
 </head>
 <body>
+    <svg class="svg-defs" aria-hidden="true"><defs>
+        <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.7" cy="10.7" r="6.8"/><path d="m16 16 5 5"/></symbol>
+        <symbol id="i-settings" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-2.8 2.8-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6v.2h-4V21a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1L4.2 17l.1-.1a1.7 1.7 0 0 0 .3-1.9A1.7 1.7 0 0 0 3 14H2.8v-4H3a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9L4.2 7 7 4.2l.1.1A1.7 1.7 0 0 0 9 4.6a1.7 1.7 0 0 0 1-1.6v-.2h4V3a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.3l.1-.1L19.8 7l-.1.1a1.7 1.7 0 0 0-.3 1.9 1.7 1.7 0 0 0 1.6 1h.2v4H21a1.7 1.7 0 0 0-1.6 1Z"/></symbol>
+        <symbol id="i-person" viewBox="0 0 24 24"><circle cx="12" cy="7.2" r="4" fill="currentColor" stroke="none"/><path d="M4.7 21c.3-5 2.8-7.7 7.3-7.7s7 2.7 7.3 7.7" fill="currentColor" stroke="none"/></symbol>
+        <symbol id="i-chat" viewBox="0 0 24 24"><path d="M3.2 4.5h17.6v13H10l-5.2 3.3.8-3.3H3.2Z" fill="currentColor" stroke="none"/></symbol>
+        <symbol id="i-chat-outline" viewBox="0 0 24 24"><path d="M3.2 4.5h17.6v13H10l-5.2 3.3.8-3.3H3.2Z"/></symbol>
+        <symbol id="i-phone" viewBox="0 0 24 24"><path d="M7.1 3.3 4.2 5c-.9.5-.8 2.5.2 4.8 1.3 3 4 5.8 6.9 7.7 2.5 1.7 5.1 2.5 6.1 1.5l2-2.7-4.4-3-1.8 2c-2.1-1-4.5-3.3-5.3-5.5l2.2-1.6Z" fill="currentColor" stroke="none"/></symbol>
+        <symbol id="i-phone-outline" viewBox="0 0 24 24"><path d="M7.1 3.3 4.2 5c-.9.5-.8 2.5.2 4.8 1.3 3 4 5.8 6.9 7.7 2.5 1.7 5.1 2.5 6.1 1.5l2-2.7-4.4-3-1.8 2c-2.1-1-4.5-3.3-5.3-5.5l2.2-1.6Z"/></symbol>
+        <symbol id="i-video" viewBox="0 0 24 24"><rect x="3" y="6" width="12.8" height="12" rx="2" fill="currentColor" stroke="none"/><path d="m15.8 10 5-3v10l-5-3Z" fill="currentColor" stroke="none"/></symbol>
+        <symbol id="i-back" viewBox="0 0 24 24"><path d="m15.5 4-8 8 8 8"/></symbol>
+        <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+        <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6.5 16.5h11l-1.4-2.2V9a4.1 4.1 0 0 0-8.2 0v5.3ZM10 19h4" fill="currentColor" stroke="none"/></symbol>
+        <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-2.9-5.6 2.9 1.1-6.2L3 9.6l6.2-.9Z"/></symbol>
+        <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 4v16M4 12h16"/></symbol>
+        <symbol id="i-smile" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="9" cy="10" r=".8" fill="currentColor" stroke="none"/><circle cx="15" cy="10" r=".8" fill="currentColor" stroke="none"/><path d="M8.5 14c1.8 2 5.2 2 7 0"/></symbol>
+        <symbol id="i-mic" viewBox="0 0 24 24"><path d="M8 10v3a4 4 0 0 0 8 0v-3M12 17v3M9 20h6"/><rect x="10" y="3" width="4" height="10" rx="2"/></symbol>
+        <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></symbol>
+        <symbol id="i-more" viewBox="0 0 24 24"><circle cx="5" cy="12" r="2" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="2" fill="currentColor" stroke="none"/><circle cx="19" cy="12" r="2" fill="currentColor" stroke="none"/></symbol>
+    </defs></svg>
+
     <div id="kakaoApp" class="kakao-app">
-        <div class="status-bar">
-            <div class="status-bar__column">
-                <span>无服务</span>
-                <i class="fas fa-wifi" aria-hidden="true"></i>
-            </div>
-            <div class="status-bar__column">
-                <strong id="kakaoTime">09:41</strong>
-            </div>
-            <div class="status-bar__column">
-                <i class="fas fa-lock-open fa-xs" aria-hidden="true"></i>
-                <span>100%</span>
-                <i class="fas fa-battery-full fa-lg" aria-hidden="true"></i>
-            </div>
-        </div>
+        <header class="status-bar" aria-label="状态栏"><strong id="kakaoTime">09:41</strong><span class="silent">◆</span><span class="status-spacer"></span><span class="signal" aria-hidden="true"><i></i><i></i><i></i><i></i></span><b>5G</b><span class="battery"><span>88</span></span></header>
 
-        <section class="kakao-page" data-page="friends" aria-labelledby="friendsTitle">
-            <header class="screen-header">
-                <h1 id="friendsTitle" class="screen-header__title">好友</h1>
-                <div class="screen-header__icons" aria-hidden="true">
-                    <span><i class="fas fa-search fa-lg"></i></span>
-                    <span><i class="fas fa-music fa-lg"></i></span>
-                    <span><i class="fas fa-cog fa-lg"></i></span>
-                </div>
-            </header>
-
-            <div id="friends-display-link">
-                <i class="fas fa-info-circle" aria-hidden="true"></i>
-                好友姓名显示
-                <i class="fas fa-chevron-right fa-xs" aria-hidden="true"></i>
-            </div>
-
-            <main class="friends-screen">
-                <a class="user-component profile-link" href="../player/player.html?edit=1" target="_top">
-                    <div class="user-component__column">
-                        <img data-player-avatar src="" class="user-component__avatar user-component__avatar--xl" alt="玩家头像">
-                        <div class="user-component__text">
-                            <h2 class="user-component__title" data-player-name>玩家</h2>
-                            <p class="user-component__subtitle">我的个人资料</p>
-                        </div>
-                    </div>
-                    <div class="user-component__column"><i class="fas fa-chevron-right fa-xs"></i></div>
-                </a>
-
-                <div class="friends-screen__channel">
-                    <div class="friends-screen__channel-header">
-                        <span>好友 1</span>
-                        <i class="fas fa-chevron-up fa-xs" aria-hidden="true"></i>
-                    </div>
-                    <button class="user-component contact-button open-chat" type="button">
-                        <div class="user-component__column">
-                            <img src="../img/jin-dohun-avatar.jpg" class="user-component__avatar user-component__avatar--sm" alt="金道勋的头像">
-                            <div class="user-component__text">
-                                <h2 class="user-component__title user-component__title--not-bold">金道勋</h2>
-                                <p class="user-component__subtitle">今天也要开心。</p>
-                            </div>
-                        </div>
-                        <div class="user-component__column"><i class="fas fa-chevron-right fa-xs"></i></div>
-                    </button>
-                </div>
+        <section class="page is-active" data-page="friends">
+            <header class="page-header"><h1>好友</h1><div class="header-actions"><button aria-label="搜索"><svg><use href="#i-search"/></svg></button><button aria-label="添加好友" class="add-person"><svg><use href="#i-person"/></svg><b>+</b></button><button aria-label="设置"><svg><use href="#i-settings"/></svg></button></div></header>
+            <main class="scroll-area friends-content">
+                <a class="self-card" href="../player/player.html?edit=1" target="_top"><img data-player-avatar src="" alt="玩家头像"><strong data-player-name>玩家</strong><span>Profile +</span></a>
+                <section class="friend-section"><div class="section-label"><span>Channel</span><b>⌃</b></div><div class="channel-row"><span class="channel-logo">Ch</span><strong>Channel</strong><span class="row-meta">1 <svg><use href="#i-chevron"/></svg></span></div></section>
+                <section class="friend-section"><div class="section-label"><span>好友 1</span><b>⌃</b></div><button class="person-row open-profile" type="button"><img src="../img/jin-dohun-avatar.jpg" alt="金道勋头像"><strong>金道勋</strong></button></section>
             </main>
         </section>
 
-        <section class="kakao-page is-active" data-page="chats" aria-labelledby="chatsTitle">
-            <header class="screen-header">
-                <h1 id="chatsTitle" class="screen-header__title">聊天</h1>
-                <div class="screen-header__icons" aria-hidden="true">
-                    <span><i class="fas fa-search fa-lg"></i></span>
-                    <span><i class="fas fa-comment-dots fa-lg"></i></span>
-                    <span><i class="fas fa-music fa-lg"></i></span>
-                    <span><i class="fas fa-cog fa-lg"></i></span>
-                </div>
-            </header>
+        <section class="page" data-page="chats">
+            <header class="page-header"><h1>聊天</h1><div class="header-actions"><button aria-label="搜索"><svg><use href="#i-search"/></svg></button><button aria-label="新聊天" class="plus-chat"><svg><use href="#i-chat-outline"/></svg><b>+</b></button><button aria-label="开放聊天"><svg><use href="#i-chat-outline"/></svg></button><button aria-label="设置"><svg><use href="#i-settings"/></svg></button></div></header>
+            <div class="filters"><button class="selected">全部</button><button>未读</button><button>开放聊天</button><button aria-label="筛选">☷+</button></div>
+            <main class="scroll-area list-content"><button class="chat-list-row open-chat" type="button"><img src="../img/jin-dohun-avatar.jpg" alt="金道勋头像"><span><strong>金道勋</strong><small id="chatPreview">今天也要开心。</small></span><time id="chatPreviewTime">刚刚</time></button></main>
+        </section>
 
-            <main class="main-screen">
-                <button class="user-component contact-button open-chat" type="button">
-                    <div class="user-component__column">
-                        <img src="../img/jin-dohun-avatar.jpg" class="user-component__avatar" alt="金道勋的头像">
-                        <div class="user-component__text">
-                            <h2 class="user-component__title">金道勋</h2>
-                            <p id="chatPreview" class="user-component__subtitle">今天也要开心。</p>
-                        </div>
-                    </div>
-                    <div class="user-component__column">
-                        <time id="chatPreviewTime" class="user-component__time">刚刚</time>
-                        <div class="badge">1</div>
-                    </div>
-                </button>
+        <section class="page" data-page="calls">
+            <header class="page-header"><h1>通话</h1><div class="header-actions"><button aria-label="搜索"><svg><use href="#i-search"/></svg></button><button aria-label="新通话" class="add-call"><svg><use href="#i-phone-outline"/></svg><b>+</b></button><button aria-label="设置"><svg><use href="#i-settings"/></svg></button></div></header>
+            <main class="scroll-area list-content"><div class="call-row"><button class="open-profile" type="button"><img src="../img/jin-dohun-avatar.jpg" alt="金道勋头像"><span><strong>金道勋</strong><small><svg><use href="#i-video"/></svg> 最近</small></span></button><div><button class="quick-call" data-call="voice" aria-label="语音通话"><svg><use href="#i-phone"/></svg></button><button class="quick-call" data-call="video" aria-label="视频通话"><svg><use href="#i-video"/></svg></button></div></div></main>
+        </section>
+
+        <section class="page" data-page="more">
+            <header class="page-header"><h1>更多</h1><div class="header-actions"><button aria-label="搜索"><svg><use href="#i-search"/></svg></button><button aria-label="设置" class="has-dot"><svg><use href="#i-settings"/></svg></button></div></header>
+            <main class="scroll-area more-content">
+                <a class="more-profile" href="../player/player.html?edit=1" target="_top"><img data-player-avatar src="" alt="玩家头像"><span><strong data-player-name>玩家</strong><small>点击修改个人资料</small></span></a>
+                <div class="service-grid"><button><span>⌖</span><small>地图</small></button><button><span>▱</span><small>打车</small></button><button><span>✉</span><small>邮箱</small></button><button><span>▣</span><small>日历</small></button><button><span>☁</span><small>Talk 云盘</small></button><button><span>☺</span><small>表情</small></button><button><span>▥</span><small>主题</small></button><button><svg><use href="#i-chat-outline"/></svg><small>开放聊天</small></button><button><span>ⓚ</span><small>账号</small></button></div>
+                <div class="recommend"><h2>推荐应用</h2><div><span class="story-logo">K</span><small>Kakao Story</small></div></div>
             </main>
         </section>
 
-        <section class="kakao-page" data-page="find" aria-labelledby="findTitle">
-            <header class="screen-header">
-                <h1 id="findTitle" class="screen-header__title">发现</h1>
-                <div class="screen-header__icons" aria-hidden="true">
-                    <span><i class="fas fa-search fa-lg"></i></span>
-                    <span><i class="fas fa-cog fa-lg"></i></span>
-                    <span class="screen-header__red-dot"></span>
-                </div>
-            </header>
-
-            <main class="main-screen find-screen">
-                <div class="icon-row">
-                    <div class="icon-row__icon"><i class="fas fa-qrcode"></i><span>二维码</span></div>
-                    <div class="icon-row__icon"><i class="far fa-address-book"></i><span>通讯录</span></div>
-                    <div class="icon-row__icon"><i class="fas fa-fingerprint"></i><span>ID 添加</span></div>
-                    <div class="icon-row__icon"><i class="far fa-envelope"></i><span>邀请</span></div>
-                </div>
-
-                <div class="recommended-friends">
-                    <h2 class="recommended-friends__title">推荐好友</h2>
-                    <span>暂时没有推荐好友。</span>
-                </div>
-
-                <div class="open-chat">
-                    <div class="open-chat__header">
-                        <h2>开放聊天</h2>
-                        <span>进入开放聊天主页 <i class="fas fa-chevron-right fa-xs"></i></span>
-                    </div>
-                    <button class="open-post open-chat" type="button">
-                        <div class="open-post__column">
-                            <h3 class="open-post__title">#金道勋</h3>
-                            <p class="open-post__hashtags">#日常 #聊天</p>
-                            <div class="open-post__members">
-                                <img src="../img/jin-dohun-avatar.jpg" alt="金道勋的头像">
-                                <span class="open-post__members-count">1 位成员</span>
-                                <div class="divider"></div>
-                                <span class="open-post__members-status">活跃</span>
-                            </div>
-                        </div>
-                        <div class="open-post__column">
-                            <div class="open-post__photo">
-                                <img src="../img/jin-dohun-avatar.jpg" alt="金道勋">
-                                <div class="open-post__heart-count"><i class="fas fa-heart fa-xs"></i><span>130</span></div>
-                            </div>
-                        </div>
-                    </button>
-                </div>
-            </main>
+        <section class="page detail-page" data-page="chat">
+            <header class="chat-header"><button id="backToChats" class="round-btn" aria-label="返回"><svg><use href="#i-back"/></svg></button><h1>金道勋</h1><div class="chat-tools"><button aria-label="搜索"><svg><use href="#i-search"/></svg></button><button id="openCallSheet" aria-label="通话"><svg><use href="#i-phone-outline"/></svg></button><button aria-label="菜单"><svg><use href="#i-menu"/></svg></button></div></header>
+            <main id="conversation" class="conversation" aria-live="polite"><div class="date-pill">今天</div><div class="message incoming"><img src="../img/jin-dohun-avatar.jpg" alt="金道勋头像"><div><strong>金道勋</strong><p>今天过得怎么样？</p><time>20:18</time></div></div><div class="message outgoing"><p>很好呀，你呢？</p><time>20:20</time></div><div class="message incoming"><img src="../img/jin-dohun-avatar.jpg" alt="金道勋头像"><div><strong>金道勋</strong><p>我也很好，早点休息。</p><time>20:21</time></div></div><div id="sentMessages"></div></main>
+            <form id="messageForm" class="composer"><button type="button" aria-label="添加"><svg><use href="#i-plus"/></svg></button><input id="messageInput" type="text" maxlength="300" autocomplete="off" placeholder="输入一条信息" aria-label="消息内容"><button type="button" aria-label="表情"><svg><use href="#i-smile"/></svg></button><button type="submit" aria-label="发送"><svg><use href="#i-mic"/></svg></button></form>
         </section>
 
-        <section class="kakao-page" data-page="more" aria-labelledby="moreTitle">
-            <header class="screen-header">
-                <h1 id="moreTitle" class="screen-header__title">更多</h1>
-                <div class="screen-header__icons" aria-hidden="true">
-                    <span><i class="fas fa-search fa-lg"></i></span>
-                    <span><i class="fas fa-music fa-lg"></i></span>
-                    <span><i class="fas fa-cog fa-lg"></i></span>
-                    <span class="screen-header__red-dot"></span>
-                </div>
-            </header>
-
-            <main class="main-screen more-screen">
-                <a class="user-component profile-link" href="../player/player.html?edit=1" target="_top">
-                    <div class="user-component__column">
-                        <img data-player-avatar src="" class="user-component__avatar user-component__avatar--xl" alt="玩家头像">
-                        <div class="user-component__text">
-                            <h2 class="user-component__title" data-player-name>玩家</h2>
-                            <p class="user-component__subtitle">点击修改名字和头像</p>
-                        </div>
-                    </div>
-                    <div class="user-component__column"><i class="far fa-comment-alt fa-2x"></i></div>
-                </a>
-
-                <div class="icon-row">
-                    <div class="icon-row__icon"><i class="far fa-calendar"></i><span>日历</span></div>
-                    <div class="icon-row__icon"><i class="fas fa-cloud"></i><span>云盘</span></div>
-                    <div class="icon-row__icon"><i class="far fa-smile-wink"></i><span>表情</span></div>
-                    <div class="icon-row__icon"><i class="fas fa-brush"></i><span>主题</span></div>
-                </div>
-                <div class="icon-row icon-row--second">
-                    <div class="icon-row__icon"><i class="fas fa-user-circle"></i><span>账号</span></div>
-                    <div class="icon-row__icon"><i class="fas fa-comments"></i><span>开放聊天</span></div>
-                    <div class="icon-row__icon"></div>
-                    <div class="icon-row__icon"></div>
-                </div>
-
-                <div class="more-suggestions">
-                    <h2 class="more-suggestions__title">推荐</h2>
-                    <div class="more-suggestions__icons">
-                        <div class="more-suggestions__icon">
-                            <div class="more-suggestions__icon-image"><i class="fas fa-quote-right"></i></div>
-                            <span>Kakao 动态</span>
-                        </div>
-                        <div class="more-suggestions__icon">
-                            <div class="more-suggestions__icon-image"><i class="fas fa-paw"></i></div>
-                            <span>Kakao 好友</span>
-                        </div>
-                        <div class="more-suggestions__icon">
-                            <div class="more-suggestions__icon-image"><i class="fas fa-gamepad"></i></div>
-                            <span>好友游戏</span>
-                        </div>
-                    </div>
-                </div>
-            </main>
+        <section class="page detail-page profile-page" data-page="profile">
+            <header class="profile-header"><button id="backFromProfile" class="round-btn" aria-label="返回"><svg><use href="#i-back"/></svg></button><div><button><svg><use href="#i-bell"/></svg></button><button><svg><use href="#i-star"/></svg></button><button><svg><use href="#i-settings"/></svg></button></div></header>
+            <main class="profile-content"><img src="../img/jin-dohun-avatar.jpg" alt="金道勋头像"><h1>金道勋</h1><div class="profile-card"><h2>聊天功能</h2><button>▣ <span>图片 / 视频</span></button><button>▤ <span>文件</span></button><button>🔗 <span>链接</span></button><button>▣ <span>日程</span></button></div><div class="profile-card"><h2>参与者</h2><div class="participant"><img data-player-avatar src="" alt="玩家头像"><strong data-player-name>玩家</strong></div><div class="participant"><img src="../img/jin-dohun-avatar.jpg" alt="金道勋头像"><strong>金道勋</strong></div></div><button class="open-chat profile-chat-button">进入聊天</button></main>
         </section>
 
-        <section id="chatScreen" class="kakao-page chat-page" data-page="chat" aria-labelledby="chatTitle">
-            <header class="alt-header">
-                <div class="alt-header__column">
-                    <button id="backToChats" class="icon-button back-button" type="button" aria-label="返回聊天列表"><i class="fas fa-angle-left fa-2x"></i></button>
-                </div>
-                <div class="alt-header__column">
-                    <h1 id="chatTitle" class="alt-header__title">金道勋</h1>
-                </div>
-                <div class="alt-header__column" aria-hidden="true">
-                    <span><i class="fas fa-search fa-lg"></i></span>
-                    <span><i class="fas fa-bars fa-lg alt-header__column-icon-last"></i></span>
-                </div>
-            </header>
+        <nav id="bottomNav" class="bottom-nav" aria-label="KakaoTalk 导航"><button class="active" data-tab="friends" aria-label="好友"><svg><use href="#i-person"/></svg></button><button data-tab="chats" aria-label="聊天"><svg><use href="#i-chat"/></svg></button><button data-tab="calls" aria-label="通话"><svg><use href="#i-phone"/></svg></button><button data-tab="more" aria-label="更多"><svg><use href="#i-more"/></svg></button></nav>
 
-            <main id="conversation" class="main-screen main-chat" aria-live="polite">
-                <div class="chat__timestamp">今天</div>
-                <div class="message-row">
-                    <img src="../img/jin-dohun-avatar.jpg" alt="金道勋的头像">
-                    <div class="message-row__content">
-                        <span class="message__author">金道勋</span>
-                        <div class="message__info">
-                            <p class="message__bubble">你到家了吗？</p>
-                            <time class="message__time">20:18</time>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="message-row message-row--own">
-                    <div class="message__info">
-                        <p class="message__bubble">刚到，你呢？</p>
-                        <time class="message__time">20:20</time>
-                    </div>
-                </div>
-
-                <div class="message-row">
-                    <img src="../img/jin-dohun-avatar.jpg" alt="金道勋的头像">
-                    <div class="message-row__content">
-                        <span class="message__author">金道勋</span>
-                        <div class="message__info">
-                            <p class="message__bubble">我也快到了，早点休息。</p>
-                            <time class="message__time">20:21</time>
-                        </div>
-                    </div>
-                </div>
-                <div id="sentMessages"></div>
-            </main>
-
-            <form id="messageForm" class="reply">
-                <div class="reply__column"><i class="far fa-plus-square fa-2x" aria-hidden="true"></i></div>
-                <div class="reply__column">
-                    <input id="messageInput" type="text" maxlength="300" autocomplete="off" placeholder="输入消息…" aria-label="消息内容">
-                    <i class="far fa-smile-wink fa-2x" aria-hidden="true"></i>
-                    <button type="submit" aria-label="发送"><i class="fas fa-arrow-up fa-lg"></i></button>
-                </div>
-            </form>
-        </section>
-
-        <nav id="bottomNav" class="nav" aria-label="KakaoTalk 导航">
-            <ul class="nav__list">
-                <li class="nav__btn"><button type="button" class="nav__link" data-tab="friends" aria-label="好友"><i class="far fa-user fa-lg"></i></button></li>
-                <li class="nav__btn"><button type="button" class="nav__link is-active" data-tab="chats" aria-label="聊天"><span class="nav__notification badge">1</span><i class="fas fa-comment fa-lg"></i></button></li>
-                <li class="nav__btn"><button type="button" class="nav__link" data-tab="find" aria-label="发现"><i class="fas fa-search fa-lg"></i></button></li>
-                <li class="nav__btn"><button type="button" class="nav__link" data-tab="more" aria-label="更多"><span class="nav__red_dot">.</span><i class="fas fa-ellipsis-h fa-lg"></i></button></li>
-            </ul>
-        </nav>
+        <div id="callSheet" class="sheet-layer" hidden><button class="sheet-backdrop" data-close-sheet aria-label="关闭"></button><section class="call-sheet"><i></i><h2>立即拨打</h2><button class="call-option"><span><svg><use href="#i-phone"/></svg></span>语音通话</button><button class="call-option"><span><svg><use href="#i-video"/></svg></span>视频通话</button></section></div>
     </div>
-
     <script src="../js/profile-store.js"></script>
-    <script src="https://kit.fontawesome.com/6478f529f2.js" crossorigin="anonymous"></script>
     <script src="kakaotalk.js"></script>
 </body>
 </html>
