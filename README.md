@@ -1,96 +1,61 @@
-# iPhone Web Simulator
+# 和校园里那个很受欢迎的男生谈恋爱
 
-A web project that recreates the look and basic interaction of an iPhone interface.
+一款运行在仿 iOS 手机中的校园恋爱互动叙事游戏。玩家通过自己的手机，在 KakaoTalk、校园论坛、通知和其他 App 中认识金道勋，并通过预设消息选项推进剧情。
 
-The project simulates a phone with a lock screen, home screen and several working apps.
+## 运行方法
 
-## Run locally
+项目是纯静态网页，不需要安装依赖或执行构建。
 
-This is a static website, so it does not need `npm install` or a build step.
+1. 在项目目录启动静态服务器：`python -m http.server 8000`
+2. 打开 `http://localhost:8000/`
+3. 首次启动输入玩家姓名并进入手机桌面
+4. 玩家姓名和第一章进度会保存在当前浏览器的 `localStorage` 中
 
-1. Start a static server from the repository folder, for example: `python -m http.server 8000`
-2. Open `http://localhost:8000/` to start the phone flow.
-3. On the first visit, choose a player name and avatar. The profile is stored only in the current browser.
-4. Continue to the lock screen and unlock the phone.
+手机锁定后可以点击侧边键唤醒，再向上滑动进入密码界面。演示密码为 `0130`。
 
-On the lock screen, press `CTRL` or the black side button to wake the display. Then click the white bar, press `ArrowUp`, or swipe upward to open the iOS-style passcode screen. The demo passcode is `0130`.
+## 第一章
 
-## Features
+- 日期：2026 年 10 月 26 日
+- 剧情从 08:12 的日常消息开始
+- 支持好友 A、同学 A、通识课第三组和金道勋的独立聊天
+- 支持立即、稍后或暂不接受金道勋好友申请
+- 支持展示、资料搜集、暂未决定以及中途修改分工
+- 玩家消息会真正写入聊天记录，NPC 会根据具体选择给出不同回复
+- 支持暂时不回复、退出 App 后继续、刷新恢复进度
+- 校园论坛帖子按照游戏时间逐条出现，支持点赞、收藏和匿名评论
+- 所有主要路线都可进入符合关系进度的晚安互动
+- 玩家亲自发送晚安性质的回复后，保存状态并显示“第一章结束”
 
-- iPhone-style lock screen
-- Interactive four-digit passcode screen with keyboard support
-- Separate custom wallpapers for the lock screen and home screen
-- Player setup before the first lock screen, with a shared local name and avatar
-- Chinese KakaoTalk simulation with no login page and one chat: 金道勋
-- KakaoTalk reads the same player name and avatar as future social apps
-- Screen turns on by pressing a button or `CTRL`
-- Realistic homepage interface with time display
-- Swipe bar to access the home screen
-- Four working apps:
-  - Messages
-  - Phone
-  - Calculator
-  - KakaoTalk
+## 剧情系统
 
-## Apps
+`game/` 目录包含：
 
-### Messages
-- Custom on-screen keyboard
-- Keyboard can be opened and closed
-- Send messages
-- Delete messages
-- Switch between letters and numbers
-- Uppercase support
+- `StoryEngine`：执行剧情节点和玩家选择
+- `EventScheduler`：按照故事时间投递事件
+- `BranchResolver`：检查前置条件与互斥路线
+- `CharacterMemory`：保存每个角色分别知道的信息
+- `RelationshipManager`：保存熟悉、信任、舒适度和恋爱倾向
+- `SaveManager` / `GameStore`：保存并恢复完整进度
 
-### Phone
-- Dial phone numbers
-- Automatic formatting for numbers like `+381`
-- Recognizes Serbian mobile numbers starting with `06`
+每个剧情节点拥有唯一 ID、时间、App、聊天线程、前置条件、NPC 消息、玩家选项、效果、后续节点、延迟效果和汇合/失效规则，已执行事件不会重复生成。
 
-### Calculator
-- iPhone-style calculator interface
-- Basic arithmetic operations
+## 手机 App
 
-### KakaoTalk
-- Opens directly from the home-screen KakaoTalk icon
-- Chinese friends, chat and profile screens
-- Only one conversation, with 金道勋
-- Uses the selected player name and avatar from `localStorage`
-- Supports sending and locally saving demo messages
+- KakaoTalk：第一章主要剧情、私聊、群聊、好友申请和分支选项
+- 校园论坛：校园信息流、帖子详情、点赞、收藏、匿名评论
+- Instagram、X、日历、相册、设置：可打开的基础界面，为后续章节保留扩展入口
+- 原有信息、电话和计算器仍可使用
 
-## System Behavior
+## 测试
 
-- Navigation happens dynamically without reloading pages
-- Elements are shown and hidden using JavaScript
-- Turning the phone off always returns to the lock screen
+运行：
 
-## Technologies
+`node tests/chapter1.test.js`
 
-- HTML
-- CSS
-- JavaScript
+测试覆盖展示路线、资料路线、未决定路线、互动较少路线、未接受及延迟接受好友申请、修改分工、存档恢复、防止重复消息和 NPC 信息隔离。
 
-## What I Learned
+## 当前限制
 
-- Advanced DOM manipulation
-- Showing and hiding UI components dynamically
-- Handling keyboard and button events
-- Creating interactive UI components
-- Managing application state without page reload
-- Building more complex JavaScript logic
-
-## Author
-
-Software engineering student at ITS
-
-## Screenshots
-
-<img width="1000" height="1000" alt="Screenshot from 2026-03-08 17-10-02" src="https://github.com/user-attachments/assets/2ba5cf02-c274-49ed-897a-ccfb26a17763" />
-<img width="1000" height="1000" alt="Screenshot from 2026-03-08 17-10-24" src="https://github.com/user-attachments/assets/0157994a-d739-41af-88c6-2bf25dfeb73d" />
-<img width="1000" height="1000" alt="Screenshot from 2026-03-08 17-11-17" src="https://github.com/user-attachments/assets/7900a417-a408-4322-9c0c-7757b7b3abcb" />
-<img width="1000" height="1000" alt="Screenshot from 2026-03-08 17-11-28" src="https://github.com/user-attachments/assets/4cf0fe28-3edd-4187-90ce-4d8d232783d5" />
-<img width="1000" height="1000" alt="Screenshot from 2026-03-08 17-11-50" src="https://github.com/user-attachments/assets/4e4c2f37-6c37-4891-80f3-121077e2ca95" />
-
-
-
-
+- 第二章和第三章只保留入口，尚未编写完整剧情
+- Instagram、X、日历、相册和设置目前是基础可用界面，不包含完整支线
+- 第一章主线使用预设回复，自由输入尚未接入剧情引擎

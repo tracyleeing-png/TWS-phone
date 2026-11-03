@@ -188,19 +188,10 @@ passcodeScreen.addEventListener('click', (event) => {
 function updateClock() {
     const vreme = document.getElementById('vreme');
     const datum = document.getElementById('datum');
-    const now = new Date();
-
-    vreme.textContent = now.toLocaleTimeString('zh-CN', {
-        hour: '2-digit',
-        minute: '2-digit',
-        hour12: false
-    });
-
-    datum.textContent = new Intl.DateTimeFormat('zh-CN', {
-        month: 'long',
-        day: 'numeric',
-        weekday: 'long'
-    }).format(now);
+    const state = window.TWSGame.engine().reload();
+    vreme.textContent = state.gameTime;
+    const storyDate = new Date(`${state.gameDate}T12:00:00`);
+    datum.textContent = new Intl.DateTimeFormat('zh-CN', { month: 'long', day: 'numeric', weekday: 'long' }).format(storyDate);
 }
 
 updateClock();

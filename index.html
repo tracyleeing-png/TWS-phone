@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/animations.css">
     <script src="js/profile-store.js"></script>
+    <script src="game/story-data.js"></script>
+    <script src="game/engine.js"></script>
+    <script src="game/runtime.js"></script>
     <script>
         if (!window.TWSProfile.load()) {
             window.location.replace('player/player.html');
@@ -16,7 +19,7 @@
             window.location.replace('lockscreen/lockscreen.html');
         }
     </script>
-    <title>TWS Phone 桌面</title>
+    <title>和校园里那个很受欢迎的男生谈恋爱</title>
 </head>
 <body class="home-page">
     <button class="powerBtn" type="button" aria-label="锁定手机" onclick="ukljuci()"></button>
@@ -38,11 +41,25 @@
                 </span>
             </a>
 
+            <div id="chapterBadge" class="chapter-badge">第一章</div>
+            <button id="storyNotification" class="story-notification" type="button" hidden>
+                <span id="notificationApp">KakaoTalk</span>
+                <strong id="notificationTitle">新消息</strong>
+                <small id="notificationBody"></small>
+                <time id="notificationTime"></time>
+            </button>
+
             <div class="home-apps" aria-label="应用">
-                <button id="openKakaoTalk" class="home-app" type="button" aria-label="打开 KakaoTalk">
+                <button class="home-app" type="button" data-app="kakaotalk" data-url="kakaotalk/index.html" aria-label="打开 KakaoTalk">
                     <img src="img/kakaotalk-icon.svg" alt="">
                     <span>KakaoTalk</span>
                 </button>
+                <button class="home-app" type="button" data-app="forum" data-url="forum/index.html?v=2" aria-label="打开校园论坛"><i class="app-icon forum-icon">校</i><span>校园论坛</span></button>
+                <button class="home-app" type="button" data-app="instagram" data-url="apps/index.html?app=instagram" aria-label="打开 Instagram"><i class="app-icon instagram-icon">◎</i><span>Instagram</span></button>
+                <button class="home-app" type="button" data-app="x" data-url="apps/index.html?app=x" aria-label="打开 X"><i class="app-icon x-icon">𝕏</i><span>X</span></button>
+                <button class="home-app" type="button" data-app="calendar" data-url="apps/index.html?app=calendar" aria-label="打开日历"><i class="app-icon calendar-icon"><b>10月</b>26</i><span>日历</span></button>
+                <button class="home-app" type="button" data-app="photos" data-url="apps/index.html?app=photos" aria-label="打开相册"><i class="app-icon photos-icon">✿</i><span>相册</span></button>
+                <button class="home-app" type="button" data-app="settings" data-url="apps/index.html?app=settings" aria-label="打开设置"><i class="app-icon settings-icon">⚙</i><span>设置</span></button>
             </div>
 
             <div id="donjeIkonice">
@@ -51,9 +68,9 @@
                 <a href="kalkulator/kalkulator.html" aria-label="计算器"><img src="img/calc.png" alt="" class="donjaIkonica"></a>
             </div>
 
-            <section id="kakaoTalkApp" class="phone-app" aria-hidden="true" hidden>
-                <iframe id="kakaoTalkFrame" title="KakaoTalk 仿真应用" data-src="kakaotalk/index.html"></iframe>
-                <button id="closeKakaoTalk" class="app-home-indicator" type="button" aria-label="返回手机桌面"></button>
+            <section id="phoneApp" class="phone-app" aria-hidden="true" hidden>
+                <iframe id="phoneAppFrame" title="手机应用"></iframe>
+                <button id="closePhoneApp" class="app-home-indicator" type="button" aria-label="返回手机桌面"></button>
             </section>
         </div>
     </div>
